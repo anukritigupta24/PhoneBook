@@ -56,7 +56,7 @@ class App extends React.Component {
             .then((res)=>{
                 this.setState({
                     contacts: res.data
-                })
+            })
 
             })
             .catch((err) =>{
@@ -67,7 +67,7 @@ class App extends React.Component {
 
 
 
-    render() {
+render() {
 
         var contacts = this.state.contacts;
 
@@ -95,52 +95,52 @@ class App extends React.Component {
                         spinner
                         text='Fetching data from Server'
                     >
-                        <div style={{marginTop: "40px"}}>
-                            <div hidden={( this.state.contacts.length!=0)} className="alert alert-danger" role="alert">
-                                Oh No! No Results Found. Try improving the search query.
-                            </div>
-                            { contacts.slice((this.state.activePage-1)*this.state.perPage,this.state.perPage*this.state.activePage).map((contact,index) => {
-                                console.log()
-                                return <div style={{marginBottom: "10px"}}>
-                                    <div className="dropdown">
-                                        <button className="btn dropdown-toggle border border-dark"
-                                                onClick={()=> {
-                                                    if (index != this.state.visible)
-                                                        this.setState({visible: index})
-                                                    else this.setState({visible: undefined})
-                                                }
-                                                }
-                                                type="button"
-                                                style={{marginDown: "100px", fontSize: "20px", width: "100%"}}
-                                                key={contact._id}>{contact.name}
+                    <div style={{marginTop: "40px"}}>
+                        <div hidden={( this.state.contacts.length!=0)} className="alert alert-danger" role="alert">
+                           Oh No! No Results Found. Try improving the search query.
+                        </div>
+                        { contacts.slice((this.state.activePage-1)*this.state.perPage,this.state.perPage*this.state.activePage).map((contact,index) => {
+                            console.log()
+                            return <div style={{marginBottom: "10px"}}>
+                                <div className="dropdown">
+                                <button className="btn dropdown-toggle border border-dark"
+                                        onClick={()=> {
+                                            if (index != this.state.visible)
+                                                this.setState({visible: index})
+                                            else this.setState({visible: undefined})
+                                        }
+                                        }
+                                        type="button"
+                                                                style={{marginDown: "100px", fontSize: "20px", width: "100%"}}
+                                                                key={contact._id}>{contact.name}
 
-                                        </button>
+                                </button>
 
-                                        {/*contact box*/}
+                                    {/*contact box*/}
 
-                                        <div hidden={index!=this.state.visible} className="border border-dark" style={{backgroundColor: "lightblue"}}>
-                                            <div  className="container">
-                                                <div className="row">
-                                                    <div style={{width: "90%",  padding: "10px"}}>
-                                                        <span style={{float: "left"}}>{contact.name}</span>
-                                                    </div >
-                                                    <div style={{width: "10%",  padding: "10px"}}>
+                                <div hidden={index!=this.state.visible} className="border border-dark" style={{backgroundColor: "lightblue"}}>
+                                    <div  className="container">
+                                        <div className="row">
+                                            <div style={{width: "90%",  padding: "10px"}}>
+                                                <span style={{float: "left"}}>{contact.name}</span>
+                                            </div >
+                                            <div style={{width: "10%",  padding: "10px"}}>
 
                                                 <span style={{float: "right", margin: "5px"}}>
                                                 <FontAwesomeIcon icon={faAngleDown} />
 
 </span>
 
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div style={{width:"20%", padding: "10px"}}>
-                                                        <span style={{float: "left", padding: "auto"}}>{new Date(contact.dob).toLocaleDateString()}</span>
-                                                    </div>
-                                                    <div style={{width:"80%", padding: "10px"}}>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div style={{width:"20%", padding: "10px"}}>
+                                        <span style={{float: "left", padding: "auto"}}>{new Date(contact.dob).toLocaleDateString()}</span>
+                                            </div>
+                                            <div style={{width:"80%", padding: "10px"}}>
                                             <span style={{float: "right"}}>
                                                 <Link to={{pathname: "/edit/contact/" + contact._id,
-                                                    state: contact}
+                                                state: contact}
                                                 }>
                                                     <button style={{margin: "5px"}} className="btn btn-info">Edit</button></Link>
 
@@ -148,22 +148,22 @@ class App extends React.Component {
 
                                                     <button style={{margin: "5px"}} className="btn btn-danger" onClick={()=>this.deleteContact(contact._id,index)}>Remove</button>
                                             </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div style={{backgroundColor: "whitesmoke", margin: "10px"}}>
-                                                <ContactDetails contact={contact}/>
-
                                             </div>
                                         </div>
+                                    </div>
+                                    <div style={{backgroundColor: "whitesmoke", margin: "10px"}}>
+                                        <ContactDetails contact={contact}/>
 
-                                        {/*contact box ends*/}
                                     </div>
                                 </div>
 
-                            })}
+                                    {/*contact box ends*/}
+                                </div>
+                            </div>
 
-                        </div>
+                        })}
+
+                    </div>
                     </LoadingOverlay>
                     {/*row ends*/}
 
