@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server",
-    "start": "node server.js",
+    "dev": "nodemon --ignore /client/build/ server.js",
+    "build": "cd client & npm run build",
+    "start": "concurrently \"npm:build\" \"node server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "keywords": [],
   "author": "Anukriti Gupta",
   "license": "ISC",
