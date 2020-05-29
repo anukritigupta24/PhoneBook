@@ -11,7 +11,10 @@ const port = 80
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname,'client','build')))
+//routers
+const contactRouter = require('./routes/contacts')
 
+app.use('/contacts', contactRouter)
 const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
