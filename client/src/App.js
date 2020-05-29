@@ -35,7 +35,7 @@ class App extends React.Component {
     search(){
         let queryString = this.state.query;
         this.setState({searching:true})
-        axios.get('http://localhost:5000/contacts/find?q='+queryString).then(res=>{
+        axios.get('/contacts/find?q='+queryString).then(res=>{
             this.setState({contacts:res.data,searching:false})}
         ).catch(err=>{
             console.log(err)
@@ -44,7 +44,7 @@ class App extends React.Component {
     }
     deleteContact(id,index){
         // this.setState({contacts:this.state.contacts.filter((val,ind)=>(index!=ind))})
-        axios.delete('http://localhost:5000/contacts/delete/' + id)
+        axios.delete('/contacts/delete/' + id)
             .then(res=> {
                 this.setState({contacts:this.state.contacts.filter((val,ind)=>(index!=ind))})
             })
@@ -52,7 +52,7 @@ class App extends React.Component {
     }
     componentDidMount() {
 
-        axios.get('http://localhost:5000/contacts/')
+        axios.get('/contacts/')
             .then((res)=>{
                 this.setState({
                     contacts: res.data

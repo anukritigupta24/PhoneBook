@@ -18,7 +18,7 @@ export default class EditContact extends Component{
 
     sendForm = (e) =>{
         e.preventDefault()
-        axios.post("http://localhost:5000/contacts/update/"+this.state._id, {name: this.state.name, dob: this.state.dob, mobile: this.state.mobile, email: this.state.email})
+        axios.post("/contacts/update/"+this.state._id, {name: this.state.name, dob: this.state.dob, mobile: this.state.mobile, email: this.state.email})
             .then((res)=>{
                 console.log("added succ")
             })

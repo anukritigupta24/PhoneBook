@@ -13,7 +13,7 @@ export default class CreateContact extends React.Component{
 
     sendForm = (e) =>{
         e.preventDefault()
-        axios.post("http://localhost:5000/contacts/add/", {name: this.state.name, dob: this.state.dob, mobile: this.state.mobile, email: this.state.email})
+        axios.post("/contacts/add/", {name: this.state.name, dob: this.state.dob, mobile: this.state.mobile, email: this.state.email})
             .then((res)=>{
                 console.log("added succ")
             })
